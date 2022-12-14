@@ -9,16 +9,12 @@ public class ServerInitializer {
         int port = 5001;
         System.out.println("Server On: " + port);
 
+        // Dispatcher에게 ServerSocket을 전달하도록 수정
         try{
             ServerSocket serverSocket = new ServerSocket(port);
-            Socket connection;
+            Dispatcher dispatcher = new Dispatcher();
             while (true) {
-                connection = serverSocket.accept();  // 서버가 뜰 때?
-                InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String line = bufferedReader.readLine();
-
-                System.out.println("READ: " + line);
+                dispatcher.dispatch(serverSocket);
             }
         } catch (IOException e) {
             e.printStackTrace();
