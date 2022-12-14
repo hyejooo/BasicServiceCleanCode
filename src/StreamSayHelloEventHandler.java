@@ -10,7 +10,7 @@ public class StreamSayHelloEventHandler implements EventHandler{
     public String getHandler() {
         return "0x5001";
     }
-
+    @Override
     public void handleEvent (InputStream inputStream) {
         try {
             byte[] buffer = new byte[DATA_SIZE];

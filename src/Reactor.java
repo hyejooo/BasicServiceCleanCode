@@ -18,6 +18,10 @@ public class Reactor {
             dispatcher.dispatch(serverSocket, handleMap);
         }
     }
+    // 오버로딩
+    public void registerHandler(String header, EventHandler handler) {
+        handleMap.put(handler.getHandler(), handler); // (핸들러 헤더, 헤더 등록)
+    }
     public void registerHandler(EventHandler handler) {
         handleMap.put(handler.getHandler(), handler); // (핸들러 헤더, 헤더 등록)
     }

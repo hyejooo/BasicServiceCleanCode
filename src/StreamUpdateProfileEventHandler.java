@@ -11,7 +11,7 @@ public class StreamUpdateProfileEventHandler implements EventHandler{
     public String getHandler() {
         return "0x6001";
     }
-
+    @Override
     public void handleEvent (InputStream inputStream) {
         try {
             byte[] buffer = new byte[DATA_SIZE];
