@@ -23,6 +23,8 @@ public class Dispatcher {
             String header = new String(buffer);
 
             handleMap.get(header).handleEvent(inputStream);
+
+            socket.close(); // socket close 추가
         } catch (IOException e) {
             e.printStackTrace();
         }
