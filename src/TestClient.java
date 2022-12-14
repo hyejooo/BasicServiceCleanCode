@@ -17,7 +17,7 @@ public class TestClient {
             socket.close();
 
             Socket socket2 = new Socket("127.0.0.1", 5001);
-            OutputStream out2 = socket.getOutputStream();
+            OutputStream out2 = socket2.getOutputStream();
             message = "0x6001|jung|1234|anny|27|female";
             out2.write(message.getBytes());
             socket2.close();
