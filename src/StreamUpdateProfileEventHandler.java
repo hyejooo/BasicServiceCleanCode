@@ -2,9 +2,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.StringTokenizer;
 
-public class StreamSayHelloProtocol {
-    private static final int DATA_SIZE = 512;
-    private static final int TOKEN_NUM = 2;
+public class StreamUpdateProfileEventHandler implements EventHandler{
+    private static final int DATA_SIZE = 1024;
+    private static final int TOKEN_NUM = 5;
+    // 0x6001|jung|1234|anny|27|female
+
+    @Override
+    public String getHandler() {
+        return "0x6001";
+    }
 
     public void handleEvent (InputStream inputStream) {
         try {
@@ -20,13 +26,18 @@ public class StreamSayHelloProtocol {
                 params[i] = token.nextToken();
                 ++i;
             }
-            sayHello(params);
+            updateProfile(params);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void sayHello(String[] params) {
-        System.out.println("SayHello -> name : " + params[0] + " age : " + params[1]);
+    private void updateProfile(String[] params) {
+        System.out.println("updateProfile -> " +
+                " id : " + params[0] +
+                " password : " + params[1] +
+                " name : " + params[2] +
+                " age : " + params[3] +
+                " gender : " + params[4]);
     }
 }

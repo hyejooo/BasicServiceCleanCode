@@ -9,15 +9,11 @@ public class ServerInitializer {
         int port = 5001;
         System.out.println("Server On: " + port);
 
-        // Dispatcher에게 ServerSocket을 전달하도록 수정
-        try{
-            ServerSocket serverSocket = new ServerSocket(port);
-            Dispatcher dispatcher = new Dispatcher();
-            while (true) {
-                dispatcher.dispatch(serverSocket);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Reactor reactor = new Reactor(port);
+
+        reactor.registerHandler(new StreamSayHelloEventHandler());
+        reactor.registerHandler(new StreamUpdateProfileEventHandler());
+
+        reactor.startServer();
     }
 }
