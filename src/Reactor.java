@@ -13,10 +13,10 @@ public class Reactor {
         }
     }
     public void startServer() {
-        Dispatcher dispatcher = new Dispatcher();
-        while (true) {
-            dispatcher.dispatch(serverSocket, handleMap);
-        }
+        // Reactor에서 어느 Dispatcher를 쓰는가로 ThreadPer과 ThreadPool를 선택할 수 있다
+//        Dispatcher dispatcher = new ThreadPerDispatcher();
+        Dispatcher dispatcher = new ThreadPoolDispatcher();
+        dispatcher.dispatch(serverSocket, handleMap);
     }
     // 오버로딩
     public void registerHandler(String header, EventHandler handler) {
